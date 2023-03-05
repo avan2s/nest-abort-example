@@ -45,7 +45,7 @@ $ npm run start:dev
 $ npm run start:prod
 
 ```
-Then open the index.html site and click on the 'Fetch Data' button.
+Then open the index.html site and click on the 'Fetch Data' button. Look inside the console and inside the server log. Both will be cancelled after 2 seconds.
 
 ## Test
 
