@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fetch API Example</title>
+</head>
+
+<body>
+    <button onclick="fetchData()">Fetch Data</button>
+
+    <script>
+        function fetchData() {
+
+            const abortController = new AbortController();
+            fetch('http://localhost:3000/foo', {signal: abortController.signal})
+                .then(response => {
+                    const reader = response.body.getReader();
+                    let receivedLength = 0;
+
+                    function readChunk() {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                console.log('Received ' + receivedLength + ' bytes of data in sum');
+                                return;
+                            }
+                            console.log(`Received ${value.length} bytes`);
+
+                            receivedLength += value.length;
+                            readChunk();
+                        });
+                    }
+
+                    readChunk();
+                })
+                .catch(error => console.error(error));
+            setTimeout(() => {
+                console.log('abort the request')
+                abortController.abort();
+            },2000)
+        }
+    </script>
+</body>
+
+</html>

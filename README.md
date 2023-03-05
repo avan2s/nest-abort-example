@@ -43,7 +43,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
 ```
+Then open the index.html site and click on the 'Fetch Data' button.
 
 ## Test
 
